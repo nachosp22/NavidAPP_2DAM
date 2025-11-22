@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/fondo_principal"
+        android:scaleType="centerCrop"
+        android:alpha="0.4"/>
+
+    <TextView
+        android:id="@+id/tvTituloZip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ABRE LA CAJA DE HERRAMIENTAS DE SANTA CLAUS"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="32dp"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvSubtituloZip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conecta los numeros del 1 al 8 sin dejar huecos"
+        android:textColor="#E0E0E0"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloZip"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.example.navidapp_2dam.TableroView
+        android:id="@+id/tableroZip"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="24dp"
+        android:background="#FFF8E7"
+        android:elevation="8dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtituloZip"
+        app:layout_constraintBottom_toTopOf="@id/btnReiniciarZip"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnReiniciarZip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reiniciar"
+        android:backgroundTint="#D32F2F"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tableroZip"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

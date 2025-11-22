@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.4"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondo_principal" />
+
+    <TextView
+        android:id="@+id/tvSantaHabla"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text=""
+        android:textColor="#D32F2F"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.234" />
+
+    <TextView
+        android:id="@+id/tvElfos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:layout_marginTop="24dp"
+        android:background="#CC1B5E20"
+        android:padding="16dp"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSantaHabla" />
+
+    <Button
+        android:id="@+id/btnAbrirCaja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🔒 ABRIR CAJA DE HERRAMIENTAS"
+        android:backgroundTint="#FFC107"
+        android:textColor="#000000"
+        android:padding="16dp"
+        android:visibility="invisible"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

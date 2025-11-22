@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.navidapp_2dam.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_inicioHistoria"
+            app:destination="@id/inicioHistoriaFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/inicioHistoriaFragment"
+        android:name="com.example.navidapp_2dam.InicioHistoria"
+        android:label="inicio_historia"
+        tools:layout="@layout/inicio_historia">
+
+        <action
+            android:id="@+id/action_historia_to_juegoQR"
+            app:destination="@id/juegoQRFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_historia_to_dialogo_directo"
+            app:destination="@id/dialogoIntermedioFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/juegoQRFragment"
+        android:name="com.example.navidapp_2dam.JuegoQR"
+        android:label="JuegoQR"
+        tools:layout="@layout/fragment_juego_qr">
+        <action
+            android:id="@+id/action_juegoQR_to_dialogo_pre_zip"
+            app:destination="@id/dialogoIntermedioFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dialogoIntermedioFragment"
+        android:name="com.example.navidapp_2dam.DialogoPreZip"
+        android:label="DialogoIntermedio"
+        tools:layout="@layout/fragment_dialogo_pre_zip">
+        <action
+            android:id="@+id/action_dialogo_to_juegoZip"
+            app:destination="@id/juegoZipFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/juegoZipFragment"
+        android:name="com.example.navidapp_2dam.JuegoZip"
+        android:label="JuegoZip"
+        tools:layout="@layout/fragment_juego_zip">
+
+        <action
+            android:id="@+id/action_juegoZip_to_descifrar"
+            app:destination="@id/juegoDescifrarFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/juegoDescifrarFragment"
+        android:name="com.example.navidapp_2dam.JuegoDescifrar"
+        android:label="JuegoDescifrar"
+        tools:layout="@layout/fragment_juego_descifrar" />
+
+</navigation>
