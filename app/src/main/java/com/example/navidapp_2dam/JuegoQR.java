@@ -70,7 +70,7 @@ public class JuegoQR extends Fragment {
             options.setPrompt("Busca y escanea la pista correspondiente");
             options.setBeepEnabled(true);
             options.setOrientationLocked(false);
-            // options.setCaptureActivity(CaptureActivityPortrait.class); // Descomenta si tienes orientación vertical forzada
+            options.setCaptureActivity(CaptureActivityPortrait.class); // Descomenta si tienes orientación vertical forzada
             qrLauncher.launch(options);
         };
 
