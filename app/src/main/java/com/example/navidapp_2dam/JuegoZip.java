@@ -55,7 +55,7 @@ public class JuegoZip extends Fragment {
 
             // C. Navegar al siguiente juego (Descifrar)
             // Asegúrate de que esta flecha existe en tu nav_graph.xml
-            Navigation.findNavController(view).navigate(R.id.action_juegoZip_to_descifrar, bundle);
+            Navigation.findNavController(view).navigate(R.id.action_juegoZip_to_sopa, bundle);
         });
     }
 }

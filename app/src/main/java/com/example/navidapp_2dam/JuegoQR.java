@@ -178,6 +178,6 @@ public class JuegoQR extends Fragment {
         bundle.putString("nombreJugador", nombreJugador);
 
         // Ahora vamos al diálogo, no al zip directo
-        Navigation.findNavController(view).navigate(R.id.action_juegoQR_to_dialogo_pre_zip, bundle);
+        Navigation.findNavController(view).navigate(R.id.action_juegoQR_to_juegoZip, bundle);
     }
 }

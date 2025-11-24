@@ -45,7 +45,7 @@ public class InicioHistoria extends Fragment {
         btnSaltar.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("nombreJugador", "Aventurero (Cheater)"); // O la variable 'nombre'
-            Navigation.findNavController(view).navigate(R.id.action_historia_to_dialogo_directo, bundle);
+            Navigation.findNavController(view).navigate(R.id.action_historia_to_juegoZip_directo, bundle);
         });
 
         // 1. Vincular vistas

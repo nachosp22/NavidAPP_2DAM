@@ -30,11 +30,10 @@
             app:exitAnim="@android:anim/slide_out_right" />
 
         <action
-            android:id="@+id/action_historia_to_dialogo_directo"
-            app:destination="@id/dialogoIntermedioFragment"
+            android:id="@+id/action_historia_to_juegoZip_directo"
+            app:destination="@id/juegoZipFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
-
     </fragment>
 
     <fragment
@@ -42,23 +41,12 @@
         android:name="com.example.navidapp_2dam.JuegoQR"
         android:label="JuegoQR"
         tools:layout="@layout/fragment_juego_qr">
+
         <action
-            android:id="@+id/action_juegoQR_to_dialogo_pre_zip"
-            app:destination="@id/dialogoIntermedioFragment"
+            android:id="@+id/action_juegoQR_to_juegoZip"
+            app:destination="@id/juegoZipFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/dialogoIntermedioFragment"
-        android:name="com.example.navidapp_2dam.DialogoPreZip"
-        android:label="DialogoIntermedio"
-        tools:layout="@layout/fragment_dialogo_pre_zip">
-        <action
-            android:id="@+id/action_dialogo_to_juegoZip"
-            app:destination="@id/juegoZipFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -68,16 +56,51 @@
         tools:layout="@layout/fragment_juego_zip">
 
         <action
-            android:id="@+id/action_juegoZip_to_descifrar"
-            app:destination="@id/juegoDescifrarFragment"
+            android:id="@+id/action_juegoZip_to_sopa"
+            app:destination="@id/juegoSopaFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
     </fragment>
 
     <fragment
-        android:id="@+id/juegoDescifrarFragment"
-        android:name="com.example.navidapp_2dam.JuegoDescifrar"
-        android:label="JuegoDescifrar"
-        tools:layout="@layout/fragment_juego_descifrar" />
+        android:id="@+id/juegoSopaFragment"
+        android:name="com.example.navidapp_2dam.JuegoSopa"
+        android:label="JuegoSopa"
+        tools:layout="@layout/fragment_juego_sopa">
+
+        <action
+            android:id="@+id/action_sopa_to_quiz"
+            app:destination="@id/juegoQuizFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/juegoQuizFragment"
+        android:name="com.example.navidapp_2dam.JuegoQuiz"
+        android:label="JuegoQuiz"
+        tools:layout="@layout/fragment_juego_quiz">
+
+        <action
+            android:id="@+id/action_quiz_to_final"
+            app:destination="@id/juegoFinalFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/juegoFinalFragment"
+        android:name="com.example.navidapp_2dam.JuegoFinal"
+        android:label="JuegoFinal"
+        tools:layout="@layout/fragment_juego_final">
+
+        <action
+            android:id="@+id/action_final_to_login"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

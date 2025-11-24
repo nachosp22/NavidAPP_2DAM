@@ -60,7 +60,7 @@ public class DialogoPreZip extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString("nombreJugador", finalNombre);
             // Navegamos al juego del ZIP
-            Navigation.findNavController(view).navigate(R.id.action_dialogo_to_juegoZip, bundle);
+            Navigation.findNavController(view).navigate(R.id.action_historia_to_juegoZip_directo, bundle);
         });
     }
 
