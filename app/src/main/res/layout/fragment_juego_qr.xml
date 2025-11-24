@@ -37,51 +37,61 @@
             android:id="@+id/textViewPista1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🔍 Toca para escanear Pista 1"
-            android:textSize="18sp"
-            android:padding="12dp"
+            android:layout_marginBottom="12dp"
             android:background="#E0E0E0"
-            android:layout_marginBottom="12dp"/>
+            android:fontFamily="sans-serif-light"
+            android:padding="12dp"
+            android:text="🔍 Salva a Santa Claus... ¡Apaga el fuego!"
+            android:textColor="#009688"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewPista2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🔍 Toca para escanear Pista 2"
-            android:textSize="18sp"
-            android:padding="12dp"
+            android:layout_marginBottom="12dp"
             android:background="#E0E0E0"
-            android:layout_marginBottom="12dp"/>
+            android:fontFamily="sans-serif-light"
+            android:padding="12dp"
+            android:text="🔍 ¡No hay navidad sin coca-cola!"
+            android:textColor="#009688"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewPista3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🔍 Toca para escanear Pista 3"
-            android:textSize="18sp"
-            android:padding="12dp"
+            android:layout_marginBottom="12dp"
             android:background="#E0E0E0"
-            android:layout_marginBottom="12dp"/>
+            android:fontFamily="sans-serif-light"
+            android:padding="12dp"
+            android:text="🔍 ¡Pásame el bastón! ¡Lo necesito!"
+            android:textColor="#009688"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewPista4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🔍 Toca para escanear Pista 4"
-            android:textSize="18sp"
-            android:padding="12dp"
+            android:layout_marginBottom="12dp"
             android:background="#E0E0E0"
-            android:layout_marginBottom="12dp"/>
+            android:fontFamily="sans-serif-light"
+            android:padding="12dp"
+            android:text="🔍 ¡Necesito herramientas para arreglar mi trineo! ¿Donde podría encontrarlas?"
+            android:textColor="#009688"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewPista5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🔍 Toca para escanear Pista 5"
-            android:textSize="18sp"
-            android:padding="12dp"
+            android:layout_marginBottom="12dp"
             android:background="#E0E0E0"
-            android:layout_marginBottom="12dp"/>
+            android:fontFamily="sans-serif-light"
+            android:padding="12dp"
+            android:text="🔍 ¿Dónde están mis gafas? ¡No veo nada!"
+            android:textColor="#009688"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
