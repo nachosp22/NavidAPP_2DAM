@@ -38,48 +38,52 @@ public class JuegoFinal extends Fragment {
 
         // 1. Recuperar nombre
         nombreJugador = "Aventurero";
-        if (getArguments() != null) nombreJugador = getArguments().getString("nombreJugador", "Aventurero");
+        if (getArguments() != null) {
+            nombreJugador = getArguments().getString("nombreJugador", "Aventurero");
+        }
 
         tvTiempo = view.findViewById(R.id.tvTiempoFinal);
         Button btnReiniciar = view.findViewById(R.id.btnVolverInicio);
 
-        // 2. Llamar a la API para cerrar tiempo
-        obtenerTiempoFinal();
+        tvTiempo.setText("Conectando con Santa...");
 
-        // 3. Botón Reiniciar (Vuelve al Login)
+        // 2. LLAMAR AL SERVIDOR PARA FINALIZAR Y GUARDAR
+        finalizarEnServidor();
+
+        // 3. Botón Volver
         btnReiniciar.setOnClickListener(v -> {
-            // Esto limpia la pila para que no puedas volver atrás con el botón del móvil
             NavOptions navOptions = new NavOptions.Builder()
                     .setPopUpTo(R.id.loginFragment, true)
                     .build();
-
             Navigation.findNavController(view).navigate(R.id.action_final_to_login, null, navOptions);
         });
     }
 
-    private void obtenerTiempoFinal() {
+    private void finalizarEnServidor() {
         RequestQueue queue = Volley.newRequestQueue(requireContext());
-
-        // Usamos tu constante o la URL directa
         String url = Constantes.URL_SERVIDOR + "/finalizar/" + nombreJugador;
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
                     try {
-                        // PROCESAR EL JSON COMO EN TU MAINACTIVITY2
+                        // El servidor nos devuelve el jugador actualizado con el tiempo calculado
                         JSONObject jsonResponse = new JSONObject(response);
-                        long tiempo = jsonResponse.optLong("totalTiempo", 0); //
 
-                        tvTiempo.setText("Tiempo Total: " + tiempo + " segs");
+                        // OJO: Tu servidor calcula en MINUTOS.
+                        // Si jugaste menos de 60 segundos, saldrá 0.
+                        long tiempo = jsonResponse.optLong("totalTiempo", 0);
+
+                        tvTiempo.setText("¡Tiempo Total: " + tiempo + " min!");
+                        Toast.makeText(getContext(), "¡Récord Guardado!", Toast.LENGTH_SHORT).show();
 
                     } catch (Exception e) {
                         e.printStackTrace();
-                        tvTiempo.setText("Tiempo: Error al leer");
+                        tvTiempo.setText("Error al leer respuesta");
                     }
                 },
                 error -> {
-                    Toast.makeText(getContext(), "Error al conectar con servidor", Toast.LENGTH_SHORT).show();
-                    tvTiempo.setText("Tiempo: Desconocido");
+                    Toast.makeText(getContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                    tvTiempo.setText("Tiempo no registrado");
                 });
 
         queue.add(stringRequest);

@@ -72,6 +72,8 @@ public class LoginFragment extends Fragment {
                 response -> {
                     Toast.makeText(getContext(), "¡Conectado!", Toast.LENGTH_SHORT).show();
 
+                    Constantes.TIEMPO_INICIO = System.currentTimeMillis();
+
                     Bundle bundle = new Bundle();
                     bundle.putString("nombreJugador", nombre);
 

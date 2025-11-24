@@ -70,7 +70,7 @@ public class JuegoQR extends Fragment {
             options.setPrompt("Busca y escanea la pista correspondiente");
             options.setBeepEnabled(true);
             options.setOrientationLocked(false);
-            options.setCaptureActivity(CaptureActivityPortrait.class); // Descomenta si tienes orientación vertical forzada
+            options.setCaptureActivity(CaptureActivityPortrait.class);
             qrLauncher.launch(options);
         };
 
@@ -80,7 +80,7 @@ public class JuegoQR extends Fragment {
         tvPista4.setOnClickListener(escanearListener);
         tvPista5.setOnClickListener(escanearListener);
 
-        // 4. Botón Siguiente (Inicialmente desactivado hasta encontrar 5 pistas)
+        // 4. Botón Siguiente
         btnSiguiente.setOnClickListener(v -> finalizarNivelYPasar(view));
     }
 
@@ -114,7 +114,7 @@ public class JuegoQR extends Fragment {
     private void obtenerPistaDelServidor(String codigoQR) {
         RequestQueue queue = Volley.newRequestQueue(requireContext());
 
-        // --- AQUÍ USAMOS LA CONSTANTE ---
+        // Usamos la constante
         String url = Constantes.URL_SERVIDOR + "/pista/" + codigoQR;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -138,13 +138,12 @@ public class JuegoQR extends Fragment {
 
         if (tvActual != null) {
             tvActual.setText("✅ " + textoPista);
-            tvActual.setClickable(false); // Ya no se puede volver a escanear
+            tvActual.setClickable(false);
             tvActual.setBackgroundColor(Color.parseColor("#C8E6C9")); // Verde éxito
         }
 
         Toast.makeText(getContext(), "¡Pista encontrada! (" + codigosEncontrados.size() + "/5)", Toast.LENGTH_SHORT).show();
 
-        // Si encontramos todas, activamos el botón para ir al ZIP
         if (codigosEncontrados.size() == TOTAL_PISTAS) {
             btnSiguiente.setEnabled(true);
             btnSiguiente.setText("IR AL MOTOR ZIP >>");
@@ -153,31 +152,13 @@ public class JuegoQR extends Fragment {
     }
 
     private void finalizarNivelYPasar(View view) {
-        // Notificar al servidor que acabamos este nivel
-        RequestQueue queue = Volley.newRequestQueue(requireContext());
+        // --- CORRECCIÓN IMPORTANTE ---
+        // Quitamos la llamada a /finalizar/ aquí para no parar el cronómetro antes de tiempo.
 
-        // --- AQUÍ USAMOS LA CONSTANTE TAMBIÉN ---
-        String url = Constantes.URL_SERVIDOR + "/finalizar/" + nombreJugador;
-
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                response -> {
-                    Toast.makeText(getContext(), "¡Nivel QR Completado!", Toast.LENGTH_SHORT).show();
-                    navegarAlSiguiente(view);
-                },
-                error -> {
-                    // Si falla el servidor, pasamos igualmente para no bloquear al usuario
-                    Toast.makeText(getContext(), "Error al guardar progreso, pero continuamos...", Toast.LENGTH_SHORT).show();
-                    navegarAlSiguiente(view);
-                }
-        );
-        queue.add(postRequest);
-    }
-
-    private void navegarAlSiguiente(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("nombreJugador", nombreJugador);
 
-        // Ahora vamos al diálogo, no al zip directo
+        // Navegamos directamente al siguiente nivel (ZIP)
         Navigation.findNavController(view).navigate(R.id.action_juegoQR_to_juegoZip, bundle);
     }
 }

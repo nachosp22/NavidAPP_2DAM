@@ -42,7 +42,7 @@
         app:layout_constraintBottom_toTopOf="@id/btn_next_level"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
+    <!--        Cambiar para version final-->
     <Button
         android:id="@+id/btn_next_level"
         android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
         android:backgroundTint="#D32F2F"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
