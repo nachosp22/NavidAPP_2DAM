@@ -152,13 +152,10 @@ public class JuegoQR extends Fragment {
     }
 
     private void finalizarNivelYPasar(View view) {
-        // --- CORRECCIÓN IMPORTANTE ---
-        // Quitamos la llamada a /finalizar/ aquí para no parar el cronómetro antes de tiempo.
-
         Bundle bundle = new Bundle();
         bundle.putString("nombreJugador", nombreJugador);
 
-        // Navegamos directamente al siguiente nivel (ZIP)
-        Navigation.findNavController(view).navigate(R.id.action_juegoQR_to_juegoZip, bundle);
+        // CAMBIO IMPORTANTE: Navegamos al DIÁLOGO, no al Zip directo
+        Navigation.findNavController(view).navigate(R.id.action_juegoQR_to_dialogoPreZip, bundle);
     }
 }

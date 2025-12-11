@@ -18,11 +18,16 @@ public class DialogoPreZip extends Fragment {
     private TextView tvSanta, tvElfos;
     private Button btnCaja;
 
-    // TUS TEXTOS
-    private String textoSanta = "SANTA: Hola jove ¿Como jdjsfj3j4iojio435?";
-    private String textoElfos = "ELFOS: ¡Cielos! Santa se ha golpeado la cabeza.\n\nNecesitamos la 'Tabla de Equivalencias' que está en su caja de herramientas.\n\n¡Rápido, intenta abrir el candado!";
+    // --- TEXTOS ACTUALIZADOS ---
+    // Santa pregunta por el "XYVVSR" (TURRON cifrado +4)
+    private String textoSanta = "SANTA: ¡Buenos días joven! En España ese XYVVSR que coméis de postre... ¿De qué está hecho? jojo... brrzzzt...";
+
+    private String textoElfos = "ELFOS: ¿¿ XYVVSR ?? ¿Que narices dira este? Se le ha ido la pinza, seguro que se ha pasado con la nieve.\n\n" +
+            "Necesitamos el DECODIFICADOR que está guardado en su caja de herramientas.\n\n" +
+            "¡Resuelve el puzzle del candado ZIP para abrir la caja!";
 
     private Handler handler = new Handler(Looper.getMainLooper());
+    private String nombreJugador;
 
     public DialogoPreZip() {
         // Constructor vacío
@@ -38,29 +43,28 @@ public class DialogoPreZip extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Recuperar nombre
-        String nombre = "Aventurero";
-        if (getArguments() != null) nombre = getArguments().getString("nombreJugador", "Aventurero");
+        nombreJugador = "Aventurero";
+        if (getArguments() != null) nombreJugador = getArguments().getString("nombreJugador", "Aventurero");
 
         tvSanta = view.findViewById(R.id.tvSantaHabla);
         tvElfos = view.findViewById(R.id.tvElfos);
         btnCaja = view.findViewById(R.id.btnAbrirCaja);
 
-        // Limpiamos los textos antes de empezar
+        // Limpieza inicial
         tvSanta.setText("");
         tvElfos.setText("");
         tvElfos.setVisibility(View.INVISIBLE);
         btnCaja.setVisibility(View.INVISIBLE);
 
-        // 1. INICIAR LA ANIMACIÓN COMPLETA
+        // INICIAR LA ANIMACIÓN
         iniciarDialogoSecuencial();
 
-        // 2. BOTÓN PARA IR AL ZIP
-        String finalNombre = nombre;
+        // BOTÓN PARA IR AL ZIP
         btnCaja.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
-            bundle.putString("nombreJugador", finalNombre);
-            // Navegamos al juego del ZIP
-            Navigation.findNavController(view).navigate(R.id.action_historia_to_juegoZip_directo, bundle);
+            bundle.putString("nombreJugador", nombreJugador);
+            // Navegamos al juego del ZIP para abrir la caja
+            Navigation.findNavController(view).navigate(R.id.action_dialogo_to_juegoZip, bundle);
         });
     }
 
@@ -70,24 +74,23 @@ public class DialogoPreZip extends Fragment {
             for (int i = 0; i < textoSanta.length(); i++) {
                 int finalI = i;
                 handler.post(() -> tvSanta.append(String.valueOf(textoSanta.charAt(finalI))));
-                try { Thread.sleep(60); } catch (InterruptedException e) {}
+                try { Thread.sleep(50); } catch (InterruptedException e) {}
             }
 
-            // PAUSA DRAMÁTICA DE 1 SEGUNDO
-            try { Thread.sleep(1000); } catch (InterruptedException e) {}
+            // PAUSA
+            try { Thread.sleep(800); } catch (InterruptedException e) {}
 
             // --- FASE 2: PREPARAR ELFOS ---
             handler.post(() -> {
-                tvElfos.setVisibility(View.VISIBLE); // Aparece el cuadro
-                tvElfos.setText(""); // Aseguramos que esté vacío
+                tvElfos.setVisibility(View.VISIBLE);
+                tvElfos.setText("");
             });
 
-            // --- FASE 3: ELFOS HABLAN (LETRA A LETRA) ---
+            // --- FASE 3: ELFOS HABLAN ---
             for (int i = 0; i < textoElfos.length(); i++) {
                 int finalI = i;
                 handler.post(() -> tvElfos.append(String.valueOf(textoElfos.charAt(finalI))));
-                // Un pelín más rápido que Santa (40ms)
-                try { Thread.sleep(40); } catch (InterruptedException e) {}
+                try { Thread.sleep(30); } catch (InterruptedException e) {}
             }
 
             // --- FASE 4: APARECE EL BOTÓN ---
@@ -99,6 +102,6 @@ public class DialogoPreZip extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        handler.removeCallbacksAndMessages(null); // Limpieza
+        handler.removeCallbacksAndMessages(null);
     }
 }

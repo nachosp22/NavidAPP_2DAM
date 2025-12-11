@@ -46,16 +46,16 @@ public class JuegoZip extends Fragment {
         String finalNombre = nombre;
 
         tablero.setOnJuegoGanadoListener(() -> {
-            // A. Mensaje de felicitación
-            Toast.makeText(getContext(), "¡MOTOR ARREGLADO! ⚡", Toast.LENGTH_LONG).show();
+            // A. Mensaje de éxito narrativo
+            Toast.makeText(getContext(), "¡CAJA ABIERTA! Has conseguido el TRADUCTOR 📟", Toast.LENGTH_LONG).show();
 
-            // B. Preparar el paquete para el siguiente nivel
+            // B. Preparar el paquete
             Bundle bundle = new Bundle();
             bundle.putString("nombreJugador", finalNombre);
 
-            // C. Navegar al siguiente juego (Descifrar)
-            // Asegúrate de que esta flecha existe en tu nav_graph.xml
-            Navigation.findNavController(view).navigate(R.id.action_juegoZip_to_sopa, bundle);
+            // C. Navegar al nivel de Descifrar (El Interprete)
+            // Asegúrate de actualizar tu nav_graph como vimos antes
+            Navigation.findNavController(view).navigate(R.id.action_juegoZip_to_descifrar, bundle);
         });
     }
 }

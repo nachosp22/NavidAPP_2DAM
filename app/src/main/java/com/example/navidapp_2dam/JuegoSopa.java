@@ -84,7 +84,7 @@ public class JuegoSopa extends Fragment {
             bundle.putString("nombreJugador", nombreJugador);
 
             // Navegar directamente
-            Navigation.findNavController(view).navigate(R.id.action_sopa_to_quiz, bundle);
+            Navigation.findNavController(view).navigate(R.id.action_sopa_to_dialogoGrinch, bundle);
         });
     }
 

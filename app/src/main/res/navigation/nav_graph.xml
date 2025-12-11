@@ -43,7 +43,20 @@
         tools:layout="@layout/fragment_juego_qr">
 
         <action
-            android:id="@+id/action_juegoQR_to_juegoZip"
+            android:id="@+id/action_juegoQR_to_dialogoPreZip"
+            app:destination="@id/dialogoPreZipFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dialogoPreZipFragment"
+        android:name="com.example.navidapp_2dam.DialogoPreZip"
+        android:label="DialogoPreZip"
+        tools:layout="@layout/fragment_dialogo_pre_zip">
+
+        <action
+            android:id="@+id/action_dialogo_to_juegoZip"
             app:destination="@id/juegoZipFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
@@ -56,7 +69,33 @@
         tools:layout="@layout/fragment_juego_zip">
 
         <action
-            android:id="@+id/action_juegoZip_to_sopa"
+            android:id="@+id/action_juegoZip_to_descifrar"
+            app:destination="@id/juegoDescifrarFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/juegoDescifrarFragment"
+        android:name="com.example.navidapp_2dam.JuegoDescifrar"
+        android:label="JuegoDescifrar"
+        tools:layout="@layout/fragment_juego_descifrar">
+
+        <action
+            android:id="@+id/action_descifrar_to_dialogoHambre"
+            app:destination="@id/dialogoPreSopaFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dialogoPreSopaFragment"
+        android:name="com.example.navidapp_2dam.DialogoPreSopa"
+        android:label="DialogoPreSopa"
+        tools:layout="@layout/fragment_dialogo_pre_sopa">
+
+        <action
+            android:id="@+id/action_dialogoHambre_to_sopa"
             app:destination="@id/juegoSopaFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
@@ -69,10 +108,23 @@
         tools:layout="@layout/fragment_juego_sopa">
 
         <action
-            android:id="@+id/action_sopa_to_quiz"
-            app:destination="@id/juegoQuizFragment"
+            android:id="@+id/action_sopa_to_dialogoGrinch"
+            app:destination="@id/dialogoPreQuizFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dialogoPreQuizFragment"
+        android:name="com.example.navidapp_2dam.DialogoPreQuiz"
+        android:label="DialogoPreQuiz"
+        tools:layout="@layout/fragment_dialogo_pre_quiz">
+
+        <action
+            android:id="@+id/action_dialogoGrinch_to_quiz"
+            app:destination="@id/juegoQuizFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
