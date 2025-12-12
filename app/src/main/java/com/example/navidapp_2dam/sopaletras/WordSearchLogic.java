@@ -78,6 +78,11 @@ public class WordSearchLogic {
         int currR = r1, currC = c1;
 
         for (int i = 0; i < len; i++) {
+            try {
+                if (currR < 0 || currR >= size || currC < 0 || currC >= size) return false;
+            } catch (IndexOutOfBoundsException e) {
+                return false;
+            }
             sb.append(board[currR][currC]);
             currR += dr;
             currC += dc;

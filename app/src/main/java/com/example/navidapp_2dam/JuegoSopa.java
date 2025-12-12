@@ -54,7 +54,7 @@ public class JuegoSopa extends Fragment {
         FrameLayout containerLayout = view.findViewById(R.id.game_container);
 
         // 3. Configuración del Juego (8x8)
-        words = Arrays.asList("NAVIDAD", "RENO", "NIEVE", "ELFOS");
+        words = Arrays.asList("GAMBAS", "TURRON", "PAVO", "CAVA");
         WordSearchLogic logic = new WordSearchLogic(8, words);
 
         updateCounter(0);
@@ -69,7 +69,7 @@ public class JuegoSopa extends Fragment {
 
             @Override
             public void onGameWon() {
-                txtCounter.setText("¡BIEN TRABAJAO MOSTRI!");
+                txtCounter.setText("¡Felicidades " + "! Has encontrado todas las palabras.");
                 txtCounter.setTextColor(Color.RED);
                 btnNextLevel.setVisibility(View.VISIBLE); // Mostramos botón
             }

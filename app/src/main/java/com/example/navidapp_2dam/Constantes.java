@@ -9,4 +9,6 @@ public class Constantes {
     // Variable para guardar el inicio del juego
     public static long TIEMPO_INICIO = 0;
 
+    public static String NOMBRE_JUGADOR = "";
+
 }

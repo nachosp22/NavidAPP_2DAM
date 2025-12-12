@@ -17,7 +17,7 @@
         android:id="@+id/tvTituloQR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Busca los 5 QRs Escondidos"
+        android:text="Encuentra los 5 items que necesita Santa Claus"
         android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="#1B5E20"
@@ -41,7 +41,7 @@
             android:background="#E0E0E0"
             android:fontFamily="sans-serif-light"
             android:padding="12dp"
-            android:text="🔍 Salva a Santa Claus... ¡Apaga el fuego!"
+            android:text="Necesitamos algo para apagar el fuego."
             android:textColor="#009688"
             android:textSize="18sp" />
 
@@ -53,7 +53,7 @@
             android:background="#E0E0E0"
             android:fontFamily="sans-serif-light"
             android:padding="12dp"
-            android:text="🔍 ¡No hay navidad sin coca-cola!"
+            android:text="A santa no le gusta el agua, prefiere otra bebida."
             android:textColor="#009688"
             android:textSize="18sp" />
 
@@ -65,7 +65,7 @@
             android:background="#E0E0E0"
             android:fontFamily="sans-serif-light"
             android:padding="12dp"
-            android:text="🔍 ¡Pásame el bastón! ¡Lo necesito!"
+            android:text="Necesitara algo para apoyarse, esta mayorcito."
             android:textColor="#009688"
             android:textSize="18sp" />
 
@@ -77,7 +77,7 @@
             android:background="#E0E0E0"
             android:fontFamily="sans-serif-light"
             android:padding="12dp"
-            android:text="🔍 ¡Necesito herramientas para arreglar mi trineo! ¿Donde podría encontrarlas?"
+            android:text=""
             android:textColor="#009688"
             android:textSize="18sp" />
 
@@ -89,7 +89,7 @@
             android:background="#E0E0E0"
             android:fontFamily="sans-serif-light"
             android:padding="12dp"
-            android:text="🔍 ¿Dónde están mis gafas? ¡No veo nada!"
+            android:text="Santa no ve nada, necesitara algo para vezr mejor."
             android:textColor="#009688"
             android:textSize="18sp" />
 

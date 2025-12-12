@@ -146,7 +146,7 @@ public class JuegoQR extends Fragment {
 
         if (codigosEncontrados.size() == TOTAL_PISTAS) {
             btnSiguiente.setEnabled(true);
-            btnSiguiente.setText("IR AL MOTOR ZIP >>");
+            btnSiguiente.setText("Continuar");
             btnSiguiente.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#1B5E20")));
         }
     }

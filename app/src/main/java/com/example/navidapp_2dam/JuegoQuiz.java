@@ -90,10 +90,11 @@ public class JuegoQuiz extends Fragment {
 
     private void cargarPreguntas() {
         listaPreguntas = new ArrayList<>();
-        listaPreguntas.add(new Pregunta("¿Qué motor arreglaste?", "V8", "ZIP", "Diesel", 1));
-        listaPreguntas.add(new Pregunta("¿Qué buscamos con QR?", "Pistas", "Pokemons", "Wifi", 0));
-        listaPreguntas.add(new Pregunta("¿Ayudantes de Santa?", "Gnomos", "Elfos", "Minions", 1));
-        listaPreguntas.add(new Pregunta("¿Animal del trineo?", "Caballo", "Perro", "Reno", 2));
+        listaPreguntas.add(new Pregunta("¿De que esta hecho el turrón?", "Avellanas", "Almendras", "Langostinos", 1));
+        listaPreguntas.add(new Pregunta("¿Cuales son los nombres de los Elfos?", "Misco y Tupu", "Javo y Java", "Epi y Blas", 0));
+        listaPreguntas.add(new Pregunta("¿Que representa el logo de Java?", "Una serpiente", "Una taza de cafe", "Un minion", 1));
+        listaPreguntas.add(new Pregunta("¿De que va pasao Santa?", "Nieve", "Azucar", "Vino", 0));
+        listaPreguntas.add(new Pregunta("¿Como se llama el Grinch?", "Ángel", "Manolo", "Juan", 0));
     }
 
     private void mostrarPregunta() {
