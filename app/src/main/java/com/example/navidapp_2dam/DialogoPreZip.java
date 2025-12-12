@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,22 +17,15 @@ import androidx.navigation.Navigation;
 public class DialogoPreZip extends Fragment {
 
     private TextView tvSanta, tvElfos;
+    private ImageView imgSanta, imgElfos;
     private Button btnCaja;
-
-    // --- TEXTOS ACTUALIZADOS ---
-    // Santa pregunta por el "XYVVSR" (TURRON cifrado +4)
-    private String textoSanta = "SANTA: ¡Buenos días joven! En España ese XYVVSR que coméis de postre... ¿De qué está hecho? jojo... brrzzzt...";
-
-    private String textoElfos = "ELFOS: ¿¿ XYVVSR ?? ¿Que narices dira este? Se le ha ido la pinza, seguro que se ha pasado con la nieve.\n\n" +
-            "Necesitamos el DECODIFICADOR que está guardado en su caja de herramientas.\n\n" +
-            "¡Resuelve el puzzle del candado ZIP para abrir la caja!";
-
-    private Handler handler = new Handler(Looper.getMainLooper());
     private String nombreJugador;
+    private Handler handler = new Handler(Looper.getMainLooper());
 
-    public DialogoPreZip() {
-        // Constructor vacío
-    }
+    private String textoSanta = "SANTA: ¡Buenos días! En España ese XYVVSR que coméis... ¿De qué está hecho? jojo... brrzzzt...";
+    private String textoElfos = "ELFOS: ¡Cielos! A Santa se le ha roto el traductor universal.\nBusca el DECODIFICADOR en la caja fuerte (Juego Zip).";
+
+    public DialogoPreZip() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,67 +35,51 @@ public class DialogoPreZip extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // Recuperar nombre
-        nombreJugador = "Aventurero";
         if (getArguments() != null) nombreJugador = getArguments().getString("nombreJugador", "Aventurero");
 
         tvSanta = view.findViewById(R.id.tvSantaHabla);
+        imgSanta = view.findViewById(R.id.imgSantaZip);
+
         tvElfos = view.findViewById(R.id.tvElfos);
+        imgElfos = view.findViewById(R.id.imgElfosZip);
+
         btnCaja = view.findViewById(R.id.btnAbrirCaja);
 
-        // Limpieza inicial
-        tvSanta.setText("");
-        tvElfos.setText("");
-        tvElfos.setVisibility(View.INVISIBLE);
-        btnCaja.setVisibility(View.INVISIBLE);
+        iniciarDialogo();
 
-        // INICIAR LA ANIMACIÓN
-        iniciarDialogoSecuencial();
-
-        // BOTÓN PARA IR AL ZIP
         btnCaja.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("nombreJugador", nombreJugador);
-            // Navegamos al juego del ZIP para abrir la caja
             Navigation.findNavController(view).navigate(R.id.action_dialogo_to_juegoZip, bundle);
         });
     }
 
-    private void iniciarDialogoSecuencial() {
+    private void iniciarDialogo() {
         new Thread(() -> {
-            // --- FASE 1: SANTA HABLA ---
-            for (int i = 0; i < textoSanta.length(); i++) {
-                int finalI = i;
-                handler.post(() -> tvSanta.append(String.valueOf(textoSanta.charAt(finalI))));
-                try { Thread.sleep(50); } catch (InterruptedException e) {}
-            }
+            try {
+                // FASE 1: SANTA
+                handler.post(() -> { imgSanta.setVisibility(View.VISIBLE); tvSanta.setVisibility(View.VISIBLE); });
+                escribirTexto(tvSanta, textoSanta);
+                Thread.sleep(textoSanta.length() * 40 + 1000);
 
-            // PAUSA
-            try { Thread.sleep(800); } catch (InterruptedException e) {}
+                // FASE 2: ELFOS
+                handler.post(() -> { imgElfos.setVisibility(View.VISIBLE); tvElfos.setVisibility(View.VISIBLE); });
+                escribirTexto(tvElfos, textoElfos);
+                Thread.sleep(textoElfos.length() * 40 + 500);
 
-            // --- FASE 2: PREPARAR ELFOS ---
-            handler.post(() -> {
-                tvElfos.setVisibility(View.VISIBLE);
-                tvElfos.setText("");
-            });
-
-            // --- FASE 3: ELFOS HABLAN ---
-            for (int i = 0; i < textoElfos.length(); i++) {
-                int finalI = i;
-                handler.post(() -> tvElfos.append(String.valueOf(textoElfos.charAt(finalI))));
-                try { Thread.sleep(30); } catch (InterruptedException e) {}
-            }
-
-            // --- FASE 4: APARECE EL BOTÓN ---
-            handler.post(() -> btnCaja.setVisibility(View.VISIBLE));
-
+                // FASE 3: BOTÓN
+                handler.post(() -> btnCaja.setVisibility(View.VISIBLE));
+            } catch (Exception e) {}
         }).start();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        handler.removeCallbacksAndMessages(null);
+    private void escribirTexto(TextView tv, String texto) {
+        new Thread(() -> {
+            for (int i = 0; i < texto.length(); i++) {
+                int finalI = i;
+                handler.post(() -> tv.append(String.valueOf(texto.charAt(finalI))));
+                try { Thread.sleep(40); } catch (Exception e) {}
+            }
+        }).start();
     }
 }

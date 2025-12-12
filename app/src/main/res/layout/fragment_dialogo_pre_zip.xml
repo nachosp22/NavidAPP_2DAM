@@ -2,60 +2,82 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000">
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.4"
+        android:src="@drawable/fondo_principal"
         android:scaleType="centerCrop"
-        android:src="@drawable/fondo_principal" />
+        android:alpha="0.4"/>
+
+    <ImageView
+        android:id="@+id/imgSantaZip"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/mike_sinfondo"
+        android:visibility="invisible"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tvSantaHabla"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:background="#FFFFFF"
-        android:gravity="center"
-        android:padding="20dp"
+        android:background="#FFEBEE"
+        android:padding="16dp"
         android:text=""
-        android:textColor="#D32F2F"
+        android:textColor="#B71C1C"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintStart_toEndOf="@id/imgSantaZip"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.234" />
+        app:layout_constraintTop_toTopOf="@id/imgSantaZip"
+        app:layout_constraintBottom_toBottomOf="@id/imgSantaZip"/>
+
+    <ImageView
+        android:id="@+id/imgElfosZip"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/misco"
+        android:visibility="invisible"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSantaHabla"/>
 
     <TextView
         android:id="@+id/tvElfos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:layout_marginTop="24dp"
-        android:background="#CC1B5E20"
+        android:background="#E0F2F1"
         android:padding="16dp"
         android:text=""
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textColor="#00695C"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintEnd_toStartOf="@id/imgElfosZip"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSantaHabla" />
+        app:layout_constraintTop_toTopOf="@id/imgElfosZip"
+        app:layout_constraintBottom_toBottomOf="@id/imgElfosZip"/>
 
     <Button
         android:id="@+id/btnAbrirCaja"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="🔒 ABRIR CAJA DE HERRAMIENTAS"
-        android:backgroundTint="#FFC107"
-        android:textColor="#000000"
+        android:text="🔧 ABRIR CAJA DE HERRAMIENTAS"
+        android:textSize="20sp"
+        android:backgroundTint="#FF9800"
         android:padding="16dp"
         android:visibility="invisible"
         android:layout_marginBottom="40dp"

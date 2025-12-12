@@ -13,35 +13,47 @@
         android:scaleType="centerCrop"
         android:alpha="0.4"/>
 
+    <ImageView
+        android:id="@+id/imgSantaSopa"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/mike_sinfondo"
+        android:visibility="invisible"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvSantaHambre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"
-        android:background="#E0F2F1"
-        android:padding="24dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        android:background="#FFEBEE"
+        android:padding="20dp"
         android:text=""
-        android:textColor="#D32F2F"
-        android:textSize="22sp"
+        android:textColor="#B71C1C"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:elevation="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/imgSantaSopa"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/btnIrCocina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="🍽️ IR A LA COCINA (SOPA DE LETRAS)"
+        android:text="🍽️ IR A LA COCINA (SOPA)"
+        android:textSize="20sp"
         android:backgroundTint="#FF9800"
         android:textColor="#000000"
         android:padding="16dp"
         android:visibility="invisible"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/tvSantaHambre"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

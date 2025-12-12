@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,15 +17,12 @@ import androidx.navigation.Navigation;
 public class DialogoPreSopa extends Fragment {
 
     private TextView tvSanta;
+    private ImageView imgSanta;
     private Button btnCocina;
     private String nombreJugador;
-
-    // EL GUIÓN
-    private String textoSanta = "SANTA: ¡Jojo! Gracias por aclararme lo del turrón, la verdad es que me encanta.\n\n" +
-            "Pero hablar de comida me ha abierto el apetito...\n\n" +
-            "Tengo un hambre voraz. ¿Podrías ir a la cocina y conseguirme un buen menú navideño?";
-
     private Handler handler = new Handler(Looper.getMainLooper());
+
+    private String textoSanta = "SANTA: ¡Jojo! Gracias por aclararme lo del turrón.\n\nPero hablar de comida me ha abierto el apetito...\n¿Podrías conseguirme un buen menú navideño?";
 
     public DialogoPreSopa() {}
 
@@ -36,36 +34,28 @@ public class DialogoPreSopa extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         if (getArguments() != null) nombreJugador = getArguments().getString("nombreJugador", "Aventurero");
 
         tvSanta = view.findViewById(R.id.tvSantaHambre);
+        imgSanta = view.findViewById(R.id.imgSantaSopa);
         btnCocina = view.findViewById(R.id.btnIrCocina);
 
-        tvSanta.setText("");
-
-        // Animación de texto
         new Thread(() -> {
-            for (int i = 0; i < textoSanta.length(); i++) {
-                int finalI = i;
-                handler.post(() -> tvSanta.append(String.valueOf(textoSanta.charAt(finalI))));
-                try { Thread.sleep(40); } catch (InterruptedException e) {}
-            }
-            handler.post(() -> btnCocina.setVisibility(View.VISIBLE));
+            try {
+                handler.post(() -> { imgSanta.setVisibility(View.VISIBLE); tvSanta.setVisibility(View.VISIBLE); });
+                for (int i = 0; i < textoSanta.length(); i++) {
+                    int finalI = i;
+                    handler.post(() -> tvSanta.append(String.valueOf(textoSanta.charAt(finalI))));
+                    try { Thread.sleep(40); } catch (Exception e) {}
+                }
+                handler.post(() -> btnCocina.setVisibility(View.VISIBLE));
+            } catch(Exception e){}
         }).start();
 
-        // Navegación a la Sopa
         btnCocina.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("nombreJugador", nombreJugador);
-            // Vamos a la sopa
             Navigation.findNavController(view).navigate(R.id.action_dialogoHambre_to_sopa, bundle);
         });
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        handler.removeCallbacksAndMessages(null);
     }
 }
