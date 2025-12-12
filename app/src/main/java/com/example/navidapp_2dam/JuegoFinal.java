@@ -65,7 +65,6 @@ public class JuegoFinal extends Fragment {
         tvSanta = view.findViewById(R.id.tvSantaFinal);
 
         layoutInfo = view.findViewById(R.id.layoutInfoFinal);
-        tvTiempo = view.findViewById(R.id.tvTiempoFinal);
         btnReiniciar = view.findViewById(R.id.btnVolverInicio);
 
         // 3. Conectar al servidor

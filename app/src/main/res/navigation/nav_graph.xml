@@ -29,11 +29,6 @@
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
 
-        <action
-            android:id="@+id/action_historia_to_juegoZip_directo"
-            app:destination="@id/juegoZipFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
     </fragment>
 
     <fragment
@@ -153,6 +148,19 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/juegoQuizFragment"
+        android:name="com.example.navidapp_2dam.JuegoQuiz"
+        android:label="JuegoQuiz"
+        tools:layout="@layout/fragment_juego_quiz">
+
+        <action
+            android:id="@+id/action_quiz_to_final"
+            app:destination="@id/juegoFinalFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
 
 </navigation>

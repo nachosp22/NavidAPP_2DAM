@@ -106,17 +106,6 @@
             android:textSize="24sp"
             android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/tvTiempoFinal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Calculando tiempo..."
-            android:textColor="#D32F2F"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="24dp"/>
-
         <Button
             android:id="@+id/btnVolverInicio"
             android:layout_width="wrap_content"
