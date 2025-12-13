@@ -4,6 +4,8 @@ public class Constantes {
     public static final String URL_SERVIDOR = "https://naviapi.onrender.com/jugador";
     public static final String URL_RANKING = "https://naviapi.onrender.com/jugador/Ranking";
 
+    public static String NOMBRE_USUARIO= "user";
+
     public static long TIEMPO_INICIO = 0;
 
     // NUEVA VARIABLE PARA EL MODO ADMIN

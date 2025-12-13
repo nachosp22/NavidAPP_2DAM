@@ -71,19 +71,9 @@ public class JuegoQuiz extends Fragment {
 
         // --- 4. BOTÓN FINAL: CALCULAR TIEMPO Y NAVEGAR ---
         btnSalir.setOnClickListener(v -> {
-            // Calculamos la diferencia de tiempo (Ahora - Inicio)
-            long tiempoFin = System.currentTimeMillis();
-            long tiempoJugado = (tiempoFin - Constantes.TIEMPO_INICIO) / 1000;
-
-            // Si te saltaste el login, ponemos 0 para que no salga negativo
-            if (Constantes.TIEMPO_INICIO == 0) tiempoJugado = 0;
-
-            // Preparamos los datos para la pantalla final
             Bundle bundle = new Bundle();
             bundle.putString("nombreJugador", nombreJugador);
-            bundle.putLong("tiempoFinal", tiempoJugado); // Enviamos el tiempo calculado
-
-            // Navegamos
+            // Navegamos al fragmento final
             Navigation.findNavController(view).navigate(R.id.action_quiz_to_final, bundle);
         });
     }
@@ -91,10 +81,10 @@ public class JuegoQuiz extends Fragment {
     private void cargarPreguntas() {
         listaPreguntas = new ArrayList<>();
         listaPreguntas.add(new Pregunta("¿De que esta hecho el turrón?", "Avellanas", "Almendras", "Langostinos", 1));
-        listaPreguntas.add(new Pregunta("¿Cuales son los nombres de los Elfos?", "Misco y Tupu", "Javo y Java", "Epi y Blas", 0));
+        listaPreguntas.add(new Pregunta("¿Cuales son los nombres de los Elfos de Santa?", "Misco y Tupu", "Javo y Java", "Epi y Blas", 0));
         listaPreguntas.add(new Pregunta("¿Que representa el logo de Java?", "Una serpiente", "Una taza de cafe", "Un minion", 1));
         listaPreguntas.add(new Pregunta("¿De que va pasao Santa?", "Nieve", "Azucar", "Vino", 0));
-        listaPreguntas.add(new Pregunta("¿Como se llama el Grinch?", "Ángel", "Manolo", "Juan", 0));
+        listaPreguntas.add(new Pregunta("El Grinch es del mismo color que el logo de un Sistema Operativo ¿Cual?", "Android", "Linux", "Windows", 0));
     }
 
     private void mostrarPregunta() {

@@ -17,12 +17,12 @@
         android:id="@+id/imgSantaZip"
         android:layout_width="140dp"
         android:layout_height="140dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="108dp"
         android:src="@drawable/mike_sinfondo"
         android:visibility="invisible"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvSantaHabla"
@@ -46,17 +46,19 @@
         android:id="@+id/imgElfosZip"
         android:layout_width="140dp"
         android:layout_height="140dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="24dp"
         android:src="@drawable/misco"
         android:visibility="invisible"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSantaHabla"/>
+        app:layout_constraintTop_toBottomOf="@id/tvSantaHabla" />
 
     <TextView
         android:id="@+id/tvElfos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
         android:background="#E0F2F1"
         android:padding="16dp"
         android:text=""
@@ -64,12 +66,12 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="invisible"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/imgElfosZip"
         app:layout_constraintEnd_toStartOf="@id/imgElfosZip"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/imgElfosZip"
-        app:layout_constraintBottom_toBottomOf="@id/imgElfosZip"/>
+        app:layout_constraintVertical_bias="0.802" />
 
     <Button
         android:id="@+id/btnAbrirCaja"

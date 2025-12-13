@@ -22,8 +22,8 @@ public class DialogoPreZip extends Fragment {
     private String nombreJugador;
     private Handler handler = new Handler(Looper.getMainLooper());
 
-    private String textoSanta = "SANTA: ¡Buenos días! En España ese XYVVSR que coméis... ¿De qué está hecho? jojo... brrzzzt...";
-    private String textoElfos = "ELFOS: ¡Cielos! A Santa se le ha roto el traductor universal.\nBusca el DECODIFICADOR en la caja fuerte (Juego Zip).";
+    private String textoSanta = "SANTA: ¡Buenos días y gracias por tu ayuda joven! En España ese XYVVSR que coméis... ¿De qué está hecho? Ho Ho Ho... brrzzzt...";
+    private String textoElfos = "ELFOS: ¿¿XYVVSR? que dice este. Nosotros somos Misco y Tupu, los elfos de Santa. A este viejo cada poco se le va la pinza.\nBusca el TRADUCTOR UNIVERSAL en la caja de herramientas y mira a ver que dice.";
 
     public DialogoPreZip() {}
 

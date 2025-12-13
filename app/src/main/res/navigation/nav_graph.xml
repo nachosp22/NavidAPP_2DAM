@@ -22,13 +22,11 @@
         android:name="com.example.navidapp_2dam.InicioHistoria"
         android:label="inicio_historia"
         tools:layout="@layout/inicio_historia">
-
         <action
             android:id="@+id/action_historia_to_juegoQR"
             app:destination="@id/juegoQRFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
-
     </fragment>
 
     <fragment
@@ -36,7 +34,6 @@
         android:name="com.example.navidapp_2dam.JuegoQR"
         android:label="JuegoQR"
         tools:layout="@layout/fragment_juego_qr">
-
         <action
             android:id="@+id/action_juegoQR_to_dialogoPreZip"
             app:destination="@id/dialogoPreZipFragment"
@@ -49,7 +46,6 @@
         android:name="com.example.navidapp_2dam.DialogoPreZip"
         android:label="DialogoPreZip"
         tools:layout="@layout/fragment_dialogo_pre_zip">
-
         <action
             android:id="@+id/action_dialogo_to_juegoZip"
             app:destination="@id/juegoZipFragment"
@@ -62,7 +58,6 @@
         android:name="com.example.navidapp_2dam.JuegoZip"
         android:label="JuegoZip"
         tools:layout="@layout/fragment_juego_zip">
-
         <action
             android:id="@+id/action_juegoZip_to_descifrar"
             app:destination="@id/juegoDescifrarFragment"
@@ -75,7 +70,6 @@
         android:name="com.example.navidapp_2dam.JuegoDescifrar"
         android:label="JuegoDescifrar"
         tools:layout="@layout/fragment_juego_descifrar">
-
         <action
             android:id="@+id/action_descifrar_to_dialogoHambre"
             app:destination="@id/dialogoPreSopaFragment"
@@ -88,7 +82,6 @@
         android:name="com.example.navidapp_2dam.DialogoPreSopa"
         android:label="DialogoPreSopa"
         tools:layout="@layout/fragment_dialogo_pre_sopa">
-
         <action
             android:id="@+id/action_dialogoHambre_to_sopa"
             app:destination="@id/juegoSopaFragment"
@@ -101,7 +94,6 @@
         android:name="com.example.navidapp_2dam.JuegoSopa"
         android:label="JuegoSopa"
         tools:layout="@layout/fragment_juego_sopa">
-
         <action
             android:id="@+id/action_sopa_to_dialogoGrinch"
             app:destination="@id/dialogoPreQuizFragment"
@@ -114,7 +106,6 @@
         android:name="com.example.navidapp_2dam.DialogoPreQuiz"
         android:label="DialogoPreQuiz"
         tools:layout="@layout/fragment_dialogo_pre_quiz">
-
         <action
             android:id="@+id/action_dialogoGrinch_to_quiz"
             app:destination="@id/juegoQuizFragment"
@@ -148,19 +139,6 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/juegoQuizFragment"
-        android:name="com.example.navidapp_2dam.JuegoQuiz"
-        android:label="JuegoQuiz"
-        tools:layout="@layout/fragment_juego_quiz">
-
-        <action
-            android:id="@+id/action_quiz_to_final"
-            app:destination="@id/juegoFinalFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
     </fragment>
 
 </navigation>

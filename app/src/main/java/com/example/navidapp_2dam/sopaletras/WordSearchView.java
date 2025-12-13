@@ -10,7 +10,6 @@ import android.view.View;
 
 public class WordSearchView extends View {
 
-    // --- INTERFAZ PARA COMUNICARSE CON EL MAIN ---
     public interface OnGameEventListener {
         void onWordFound(int currentCount);
         void onGameWon();
@@ -21,16 +20,18 @@ public class WordSearchView extends View {
 
     private float cellSize;
     private Point startDrag, endDrag;
-
-    // Variables para centrado
     private float boardWidth, boardHeight;
     private float offsetX, offsetY;
 
-    // Colores
-    private final int COLOR_BG = Color.parseColor("#FFF8E1");
+    // --- COLORES ACTUALIZADOS PARA EL TEMA ---
+    // Fondo blanco casi opaco (240/255) para leer bien
+    private final int COLOR_BG = Color.argb(240, 255, 255, 255);
+    // Texto verde navidad oscuro
     private final int COLOR_TEXT = Color.parseColor("#1B5E20");
-    private final int COLOR_SELECTION = Color.argb(150, 211, 47, 47); // Rojo semi
-    private final int COLOR_FOUND = Color.argb(150, 56, 142, 60); // Verde semi
+    // Selección roja semitransparente (Estilo Navidad)
+    private final int COLOR_SELECTION = Color.argb(120, 211, 47, 47);
+    // Palabra encontrada en Oro/Amarillo oscuro
+    private final int COLOR_FOUND = Color.argb(180, 255, 193, 7);
 
     private Paint textPaint, selectionPaint, foundPaint;
 
@@ -64,37 +65,30 @@ public class WordSearchView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-
-        // Cálculo para centrar el tablero
         int size = logic.getSize();
-        // Usamos el ancho disponible menos un pequeño margen (40px)
-        cellSize = (float) (w - 40) / size;
-
+        cellSize = (float) (w - 20) / size; // Margen pequeño interno
         boardWidth = cellSize * size;
         boardHeight = cellSize * size;
-
         offsetX = (w - boardWidth) / 2;
         offsetY = (h - boardHeight) / 2;
 
         textPaint.setTextSize(cellSize * 0.6f);
-        selectionPaint.setStrokeWidth(cellSize * 0.8f);
-        foundPaint.setStrokeWidth(cellSize * 0.8f);
+        selectionPaint.setStrokeWidth(cellSize * 0.6f); // Selección más ancha
+        foundPaint.setStrokeWidth(cellSize * 0.6f);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawColor(COLOR_BG);
+        canvas.drawColor(COLOR_BG); // Dibuja el fondo del tablero
 
         // 1. Dibujar Letras
         for (int i = 0; i < logic.getSize(); i++) {
             for (int j = 0; j < logic.getSize(); j++) {
                 float x = offsetX + j * cellSize;
                 float y = offsetY + i * cellSize;
-
                 float textX = x + cellSize / 2;
                 float textY = y + cellSize / 2 - (textPaint.descent() + textPaint.ascent()) / 2;
-
                 canvas.drawText(String.valueOf(logic.getCell(i, j)), textX, textY, textPaint);
             }
         }
@@ -123,13 +117,11 @@ public class WordSearchView extends View {
         float x = event.getX() - offsetX;
         float y = event.getY() - offsetY;
 
-        // Ignorar toques fuera del área del tablero
         if (x < 0 || x > boardWidth || y < 0 || y > boardHeight) return true;
 
         int c = (int) (x / cellSize);
         int r = (int) (y / cellSize);
 
-        // Clamp seguridad
         c = Math.max(0, Math.min(logic.getSize() - 1, c));
         r = Math.max(0, Math.min(logic.getSize() - 1, r));
 
@@ -139,19 +131,16 @@ public class WordSearchView extends View {
                 endDrag = new Point(c, r);
                 invalidate();
                 return true;
-
             case MotionEvent.ACTION_MOVE:
                 if (startDrag != null) {
                     endDrag = new Point(c, r);
                     invalidate();
                 }
                 return true;
-
             case MotionEvent.ACTION_UP:
                 if (startDrag != null) {
                     endDrag = new Point(c, r);
                     boolean found = logic.checkSelection(startDrag.y, startDrag.x, endDrag.y, endDrag.x);
-
                     if (found && listener != null) {
                         listener.onWordFound(logic.getFoundWords().size());
                         if (logic.isGameFinished()) {

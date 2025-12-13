@@ -71,9 +71,6 @@ public class LoginFragment extends Fragment {
 
         // --- 3. ACCIÓN DEL BOTÓN ADMIN ---
         btnAdmin.setOnClickListener(v -> {
-            // Saltamos directamente sin llamar al servidor (Modo Dios)
-            Constantes.TIEMPO_INICIO = System.currentTimeMillis();
-
             Bundle bundle = new Bundle();
             bundle.putString("nombreJugador", "Admin (Cheater)"); // Nombre especial
 
@@ -82,8 +79,6 @@ public class LoginFragment extends Fragment {
         });
 
         btnAdmin.setOnClickListener(v -> {
-            // ACTIVAMOS EL MODO DIOS
-            Constantes.TIEMPO_INICIO = System.currentTimeMillis();
             Constantes.IS_ADMIN = true; // <--- ESTO ES LO NUEVO
 
             Bundle bundle = new Bundle();

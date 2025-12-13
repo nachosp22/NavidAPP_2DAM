@@ -6,39 +6,55 @@
     android:layout_height="match_parent"
     android:background="#E0F2F1">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/fondo_principal"
+        android:scaleType="centerCrop"
+        android:alpha="0.3"/>
+
     <LinearLayout
         android:id="@+id/panelDecodificador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#263238"
-        android:padding="24dp"
+        android:background="#F2263238"
+        android:padding="20dp"
         android:elevation="8dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="📟 DECODIFICADOR v1.0"
+            android:text="📟 DECODIFICADOR v2.0"
             android:textColor="#80CBC4"
             android:textStyle="bold"
+            android:textSize="20sp"
             android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/etEntradaCifrada"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Introduce código (Ej: XYVVSR)"
+            android:hint="Introduce texto a descodificar"
             android:textColorHint="#90A4AE"
             android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textAlignment="center"
             android:backgroundTint="#80CBC4"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="12dp"/>
 
         <Button
             android:id="@+id/btnDecodificar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TRADUCIR CÓDIGO"
+            android:text="DESCODIFICAR"
+            android:textSize="16sp"
             android:backgroundTint="#009688"
             android:layout_marginTop="8dp"/>
 
@@ -48,11 +64,11 @@
             android:layout_height="wrap_content"
             android:text="Resultado: ..."
             android:textColor="#00E676"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:padding="12dp"
-            android:background="#10000000"
+            android:padding="8dp"
+            android:background="#33000000"
             android:layout_marginTop="12dp"/>
     </LinearLayout>
 
@@ -61,11 +77,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="SANTA PREGUNTA:\n'¡Joven! En España, ese XYVVSR que coméis de postre... ¿De qué está hecho?'"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:gravity="center"
         android:textStyle="italic"
-        android:textColor="#D32F2F"
-        android:padding="24dp"
+        android:textColor="#B71C1C"
+        android:background="#E6FFFFFF"
+        android:padding="20dp"
+        android:elevation="4dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/panelDecodificador"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,10 +95,15 @@
         android:id="@+id/etRespuestaFinal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Tu respuesta para Santa..."
+        android:hint="Repuesta aquí"
         android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#1B5E20"
+        android:background="#D9FFFFFF"
+        android:padding="12dp"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/btnEnviarRespuesta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -88,6 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="RESPONDER A SANTA"
+        android:textSize="18sp"
         android:backgroundTint="#D32F2F"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
