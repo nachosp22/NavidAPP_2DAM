@@ -77,7 +77,7 @@
         android:id="@+id/btnAbrirCaja"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="🔧 ABRIR CAJA DE HERRAMIENTAS"
+        android:text="ABRIR CAJA DE HERRAMIENTAS"
         android:textSize="20sp"
         android:backgroundTint="#FF9800"
         android:padding="16dp"
