@@ -95,7 +95,7 @@ public class JuegoQR extends Fragment {
         String codigoLimpio = codigo.trim().toLowerCase();
 
         // Palabras clave válidas
-        Set<String> codigosValidos = new HashSet<>(Arrays.asList("agua", "extintor", "cocacola", "baños", "sillas"));
+        Set<String> codigosValidos = new HashSet<>(Arrays.asList("agua", "cafe", "baston", "caja de herramientas", "gafas"));
 
         if (!codigosValidos.contains(codigoLimpio)) {
             Toast.makeText(getContext(), "Este QR no es del juego (" + codigoLimpio + ")", Toast.LENGTH_SHORT).show();
