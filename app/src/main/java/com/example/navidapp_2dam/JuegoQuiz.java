@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -28,6 +27,9 @@ public class JuegoQuiz extends Fragment {
     private int indicePregunta = 0;
     private int puntuacion = 0;
     private String nombreJugador;
+
+    // Configuración de dificultad
+    private static final int MINIMO_ACIERTOS = 3;
 
     public JuegoQuiz() {
         // Constructor vacío requerido
@@ -69,17 +71,12 @@ public class JuegoQuiz extends Fragment {
         btnOp2.setOnClickListener(v -> verificarRespuesta(1));
         btnOp3.setOnClickListener(v -> verificarRespuesta(2));
 
-        // --- 4. BOTÓN FINAL: CALCULAR TIEMPO Y NAVEGAR ---
-        btnSalir.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("nombreJugador", nombreJugador);
-            // Navegamos al fragmento final
-            Navigation.findNavController(view).navigate(R.id.action_quiz_to_final, bundle);
-        });
+        // NOTA: El listener de btnSalir se define en terminarJuego() según el resultado
     }
 
     private void cargarPreguntas() {
         listaPreguntas = new ArrayList<>();
+        // TUS PREGUNTAS PERSONALIZADAS
         listaPreguntas.add(new Pregunta("¿De que esta hecho el turrón?", "Avellanas", "Almendras", "Langostinos", 1));
         listaPreguntas.add(new Pregunta("¿Cuales son los nombres de los Elfos de Santa?", "Misco y Tupu", "Javo y Java", "Epi y Blas", 0));
         listaPreguntas.add(new Pregunta("¿Que representa el logo de Java?", "Una serpiente", "Una taza de cafe", "Un minion", 1));
@@ -108,10 +105,54 @@ public class JuegoQuiz extends Fragment {
 
     private void terminarJuego() {
         layoutFinal.setVisibility(View.VISIBLE);
+        // Bloquear botones de fondo
         btnOp1.setEnabled(false); btnOp2.setEnabled(false); btnOp3.setEnabled(false);
 
-        tvMensajeFinal.setText("¡FIN, " + nombreJugador + "!");
-        tvSubtituloFinal.setText("Has conseguido " + puntuacion + " de " + listaPreguntas.size() + " aciertos.");
+        // LÓGICA DE APROBADO / SUSPENSO
+        if (puntuacion >= MINIMO_ACIERTOS) {
+            // -- GANADOR --
+            tvMensajeFinal.setText("¡HAS GANADO!");
+            tvSubtituloFinal.setText("¡Felicidades " + nombreJugador + "!\nHas recuperado los regalos (" + puntuacion + "/" + listaPreguntas.size() + ")");
+
+            btnSalir.setText("TERMINAR AVENTURA 🎁");
+            btnSalir.setBackgroundTintList(getContext().getColorStateList(android.R.color.holo_green_dark));
+
+            // Listener para ir al final
+            btnSalir.setOnClickListener(v -> {
+                Bundle bundle = new Bundle();
+                bundle.putString("nombreJugador", nombreJugador);
+                Navigation.findNavController(getView()).navigate(R.id.action_quiz_to_final, bundle);
+            });
+
+        } else {
+            // -- PERDEDOR --
+            tvMensajeFinal.setText("¡OH NO!");
+            tvSubtituloFinal.setText("El Grinch se escapa...\nNecesitas al menos 3 aciertos.\nTienes: " + puntuacion);
+
+            btnSalir.setText("🔄 REINTENTAR");
+            btnSalir.setBackgroundTintList(getContext().getColorStateList(android.R.color.holo_red_dark));
+
+            // Listener para reiniciar
+            btnSalir.setOnClickListener(v -> {
+                reiniciarNivel();
+            });
+        }
+    }
+
+    private void reiniciarNivel() {
+        // Reseteamos el juego
+        indicePregunta = 0;
+        puntuacion = 0;
+        tvPuntos.setText("Puntos: 0");
+
+        // Ocultamos panel y reactivamos botones
+        layoutFinal.setVisibility(View.GONE);
+        btnOp1.setEnabled(true);
+        btnOp2.setEnabled(true);
+        btnOp3.setEnabled(true);
+
+        // Empezamos de nuevo
+        mostrarPregunta();
     }
 
     private static class Pregunta {

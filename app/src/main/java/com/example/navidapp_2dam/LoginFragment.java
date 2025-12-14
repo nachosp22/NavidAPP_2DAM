@@ -1,8 +1,8 @@
 package com.example.navidapp_2dam;
 
 import android.os.Bundle;
-import android.text.Editable; // IMPORTANTE
-import android.text.TextWatcher; // IMPORTANTE
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +23,7 @@ public class LoginFragment extends Fragment {
 
     EditText etNombre;
     Button btnIniciar;
-    Button btnAdmin; // Referencia al nuevo botón
+    Button btnAdmin;
 
     public LoginFragment() {}
 
@@ -38,83 +38,69 @@ public class LoginFragment extends Fragment {
 
         etNombre = view.findViewById(R.id.etNombre);
         btnIniciar = view.findViewById(R.id.btnIniciar);
-        btnAdmin = view.findViewById(R.id.btnAdminBypass); // Vinculamos
+        btnAdmin = view.findViewById(R.id.btnAdminBypass);
 
-        // --- 1. LÓGICA DE JUEGO NORMAL ---
+        // 1. BOTÓN INICIAR
         btnIniciar.setOnClickListener(v -> {
-            String nombre = etNombre.getText().toString();
-            if (!nombre.isEmpty()) {
-                iniciarPartida(nombre);
+            String nombreInput = etNombre.getText().toString().trim();
+
+            if (!nombreInput.isEmpty()) {
+                // A. GUARDAMOS EL NOMBRE EN LA CONSTANTE GLOBAL
+                Constantes.NOMBRE_JUGADOR = nombreInput;
+
+                // B. AVISAMOS AL SERVIDOR (Para que empiece a contar el tiempo)
+                iniciarRelojServidor();
             } else {
                 Toast.makeText(getContext(), "Escribe un nombre", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // --- 2. LÓGICA DE "TRUCO" (Easter Egg) ---
+        // 2. CÓDIGO SECRETO ADMIN
         etNombre.addTextChangedListener(new TextWatcher() {
-            @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Si escribe la contraseña secreta, mostramos el botón
-                if (s.toString().trim().equals("adminadmin")) {
-                    btnAdmin.setVisibility(View.VISIBLE);
-                } else {
-                    btnAdmin.setVisibility(View.GONE);
-                }
+                if (s.toString().trim().equals("adminadmin")) btnAdmin.setVisibility(View.VISIBLE);
+                else btnAdmin.setVisibility(View.GONE);
             }
-
-            @Override
             public void afterTextChanged(Editable s) {}
         });
 
-        // --- 3. ACCIÓN DEL BOTÓN ADMIN ---
+        // 3. BOTÓN ADMIN
         btnAdmin.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("nombreJugador", "Admin (Cheater)"); // Nombre especial
-
-            Toast.makeText(getContext(), "¡Modo Admin Activado!", Toast.LENGTH_SHORT).show();
-            Navigation.findNavController(view).navigate(R.id.action_login_to_inicioHistoria, bundle);
-        });
-
-        btnAdmin.setOnClickListener(v -> {
-            Constantes.IS_ADMIN = true; // <--- ESTO ES LO NUEVO
-
-            Bundle bundle = new Bundle();
-            bundle.putString("nombreJugador", "Admin (Cheater)");
-
-            Toast.makeText(getContext(), "⚡ MODO SUPER-ADMIN ACTIVADO ⚡", Toast.LENGTH_SHORT).show();
-            Navigation.findNavController(view).navigate(R.id.action_login_to_inicioHistoria, bundle);
+            Constantes.IS_ADMIN = true;
+            Constantes.NOMBRE_JUGADOR = "Admin";
+            Toast.makeText(getContext(), "⚡ MODO DIOS ACTIVADO ⚡", Toast.LENGTH_SHORT).show();
+            // Los admin saltan sin petición al servidor
+            Navigation.findNavController(view).navigate(R.id.action_login_to_inicioHistoria);
         });
     }
 
-    private void iniciarPartida(String nombre) {
+    private void iniciarRelojServidor() {
+        btnIniciar.setEnabled(false);
+        btnIniciar.setText("Conectando...");
+
         RequestQueue queue = Volley.newRequestQueue(requireContext());
-        String url = Constantes.URL_SERVIDOR + "/crear/" + nombre;
+        // Usamos la constante directamente
+        String url = Constantes.URL_SERVIDOR + "/crear/" + Constantes.NOMBRE_JUGADOR;
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
-                    Toast.makeText(getContext(), "¡Conectado!", Toast.LENGTH_SHORT).show();
-                    Constantes.TIEMPO_INICIO = System.currentTimeMillis();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("nombreJugador", nombre);
-                    if (getView() != null) {
-                        Navigation.findNavController(getView())
-                                .navigate(R.id.action_login_to_inicioHistoria, bundle);
-                    }
+                    // Éxito: El servidor ha arrancado el cronómetro
+                    navegarAlJuego();
                 },
                 error -> {
-                    Constantes.TIEMPO_INICIO = System.currentTimeMillis();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("nombreJugador", nombre);
-                    Toast.makeText(getContext(), "Modo Offline activado", Toast.LENGTH_SHORT).show();
-                    if (getView() != null) {
-                        Navigation.findNavController(getView())
-                                .navigate(R.id.action_login_to_inicioHistoria, bundle);
-                    }
+                    // Fallo: Seguimos igual (modo offline)
+                    Toast.makeText(getContext(), "Sin conexión (Jugando Offline)", Toast.LENGTH_SHORT).show();
+                    navegarAlJuego();
                 });
 
         queue.add(stringRequest);
+    }
+
+    private void navegarAlJuego() {
+        if (getView() != null) {
+            // Ya no hace falta pasar Bundle, el nombre está en Constantes
+            Navigation.findNavController(getView()).navigate(R.id.action_login_to_inicioHistoria);
+        }
     }
 }

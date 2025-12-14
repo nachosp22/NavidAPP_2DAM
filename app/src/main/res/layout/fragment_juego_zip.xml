@@ -1,69 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="#E0F2F1">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/fondo_principal"
         android:scaleType="centerCrop"
-        android:alpha="0.4"/>
+        android:alpha="0.3"/>
 
     <TextView
         android:id="@+id/tvTituloZip"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="ABRE LA CAJA DE HERRAMIENTAS DE SANTA CLAUS"
-        android:textSize="24sp"
+        android:text="🔌 CAJA DE HERRAMIENTAS"
+        android:textSize="26sp"
+        android:textAlignment="center"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
+        android:textColor="#1B5E20"
+        android:background="#D9FFFFFF"
+        android:padding="16dp"
+        android:elevation="6dp"
         android:layout_marginTop="32dp"
-        android:shadowColor="#000000"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="4"
+        android:layout_marginHorizontal="24dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/tvSubtituloZip"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Conecta los numeros del 1 al 8 sin dejar huecos"
-        android:textColor="#E0E0E0"
-        android:layout_marginTop="8dp"
+        android:text="Conecta los puntos (1-8) sin dejar huecos vacíos."
+        android:textAlignment="center"
+        android:textColor="#004D40"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:background="#D9FFFFFF"
+        android:padding="12dp"
+        android:elevation="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="24dp"
         app:layout_constraintTop_toBottomOf="@id/tvTituloZip"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.example.navidapp_2dam.TableroView
-        android:id="@+id/tableroZip"
+    <FrameLayout
+        android:id="@+id/contenedorTablero"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="24dp"
-        android:background="#FFF8E7"
+        android:background="#FFFFFF"
         android:elevation="8dp"
+        android:padding="8dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toBottomOf="@id/tvSubtituloZip"
         app:layout_constraintBottom_toTopOf="@id/btnReiniciarZip"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.example.navidapp_2dam.TableroView
+            android:id="@+id/tableroZip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFF8E1"/> </FrameLayout>
 
     <Button
         android:id="@+id/btnReiniciarZip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reiniciar"
+        android:text="🔄 REINICIAR CIRCUITO"
         android:backgroundTint="#D32F2F"
         android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
         android:layout_marginBottom="32dp"
-        android:layout_marginTop="16dp"
+        android:elevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tableroZip"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
