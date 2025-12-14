@@ -73,7 +73,7 @@
         android:id="@+id/btnReiniciarZip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="🔄 REINICIAR CIRCUITO"
+        android:text="REINICIAR CIRCUITO"
         android:backgroundTint="#D32F2F"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
