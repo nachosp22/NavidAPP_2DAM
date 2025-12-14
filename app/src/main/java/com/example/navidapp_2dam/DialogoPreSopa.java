@@ -22,7 +22,7 @@ public class DialogoPreSopa extends Fragment {
     private String nombreJugador;
     private Handler handler = new Handler(Looper.getMainLooper());
 
-    private String textoSanta = "SANTA: ¡Jojo! Gracias por aclararme lo del turrón.\n\nPero hablar de comida me ha abierto el apetito...\n¿Podrías conseguirme un buen menú navideño?";
+    private String textoSanta = "SANTA: ¡Ho Ho Ho! Gracias por aclararme lo del turrón.\n\nPero hablar de comida me ha abierto el apetito...\n¿Podrías conseguirme un buen menú navideño?";
 
     public DialogoPreSopa() {}
 

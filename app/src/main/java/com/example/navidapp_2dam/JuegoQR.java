@@ -130,10 +130,10 @@ public class JuegoQR extends Fragment {
         TextView tvActual = null;
         switch (codigo) {
             case "agua": tvActual = tvPista1; break;
-            case "extintor": tvActual = tvPista2; break;
-            case "cocacola": tvActual = tvPista3; break;
-            case "baños": tvActual = tvPista4; break;
-            case "sillas": tvActual = tvPista5; break;
+            case "cafe": tvActual = tvPista2; break;
+            case "baston": tvActual = tvPista3; break;
+            case "caja de herramientas": tvActual = tvPista4; break;
+            case "gafas": tvActual = tvPista5; break;
         }
 
         if (tvActual != null) {

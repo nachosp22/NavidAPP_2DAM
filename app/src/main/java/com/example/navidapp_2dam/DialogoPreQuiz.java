@@ -22,7 +22,7 @@ public class DialogoPreQuiz extends Fragment {
     private String nombreJugador;
     private Handler handler = new Handler(Looper.getMainLooper());
 
-    private String textoSanta = "SANTA: ¡Jo jo jo! ¡Delicioso! Gracias amigo. Ya tengo fuerzas para repartir los rega...";
+    private String textoSanta = "SANTA: ¡Ho Ho Ho! ¡Delicioso! Gracias amigo. Ya tengo fuerzas para repartir los rega...";
     private String textoGrinch = "GRINCH: ¡JAJAJAJA! ¿A dónde vas gordinflón?\n¡Yo tengo los regalos!\nGáname en un DUELO si los quieres.";
 
     public DialogoPreQuiz() {}

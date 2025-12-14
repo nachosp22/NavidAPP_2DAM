@@ -83,7 +83,7 @@ public class JuegoQuiz extends Fragment {
         listaPreguntas.add(new Pregunta("¿De que esta hecho el turrón?", "Avellanas", "Almendras", "Langostinos", 1));
         listaPreguntas.add(new Pregunta("¿Cuales son los nombres de los Elfos de Santa?", "Misco y Tupu", "Javo y Java", "Epi y Blas", 0));
         listaPreguntas.add(new Pregunta("¿Que representa el logo de Java?", "Una serpiente", "Una taza de cafe", "Un minion", 1));
-        listaPreguntas.add(new Pregunta("¿De que va pasao Santa?", "Nieve", "Azucar", "Vino", 0));
+        listaPreguntas.add(new Pregunta("¿Cual de estos alimentos no forma parte del menu de Santa?", "Cordero", "Gambas", "Pavo", 0));
         listaPreguntas.add(new Pregunta("El Grinch es del mismo color que el logo de un Sistema Operativo ¿Cual?", "Android", "Linux", "Windows", 0));
     }
 
